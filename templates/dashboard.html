@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fraud Detection System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                🛡️ Fraud Detection System
+
+            </div>
+
+        </nav>
+
+        <header class="header">
+
+            <h1>Rule-Based Banking Transaction Analysis</h1>
+
+            <p>
+                Upload transaction data, analyze suspicious activities and visualize fraud statistics.
+            </p>
+
+        </header>
+
+        <section class="upload-section">
+
+            <h2>Upload Transaction CSV</h2>
+
+            <form
+                id="upload-form"
+                action="/upload"
+                method="POST"
+                enctype="multipart/form-data">
+
+                <input
+                    type="file"
+                    id="csvFile"
+                    name="csvFile"
+                    accept=".csv"
+                    required>
+
+                <button
+                    type="submit"
+                    id="analyze-btn">
+
+                    Analyze Transactions
+
+                    </button>
+
+            </form>
+
+        </section>
+
+        <section class="stats">
+
+            <div class="card total">
+                <h3>📄 Total Transactions</h3>
+                <p id="total-count">0</p>
+            </div>
+
+            <div class="card high">
+                <h3>🚨 High Risk</h3>
+                <p id="high-count">0</p>
+            </div>
+
+            <div class="card medium">
+                <h3>⚠️ Medium Risk</h3>
+                <p id="medium-count">0</p>
+            </div>
+
+            <div class="card safe">
+                <h3>✅ Safe</h3>
+                <p id="safe-count">0</p>
+            </div>
+
+        </section>
+
+        <section class="chart-section">
+
+            <h2>Fraud Distribution</h2>
+
+            <div class="chart-placeholder" id="chart-container">
+
+                <p>📊 Pie Chart will appear here after analysis</p>
+
+            </div>
+
+        </section>
+
+        <section class="table-section">
+
+           <h2>Transaction Results</h2>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Amount</th>
+                    <th>Location</th>
+                    <th>Device</th>
+                    <th>Risk Score</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="transaction table">
+
+                <tr>
+
+                    <td>1001</td>
+                    <td>₹75,000</td>
+                    <td>USA</td>
+                    <td>New Device</td>
+                    <td>95</td>
+                    <td class="danger">High Risk</td>
+
+                </tr>
+
+            </tbody>
+
+            </table>
+
+        </section>
+
+    </div>
+
+</body>
+
+</html>
