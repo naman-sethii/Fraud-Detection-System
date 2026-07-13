@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import pandas as pd
-from fraud_engine import calculate_risk
+from fraud_engine import calculate_risk, calculate_probability
 
 app = Flask(__name__)
 
@@ -17,17 +17,28 @@ def upload():
     print("Filename:", file.filename)
 
     df = pd.read_csv(file)
-    df["Risk Score"] = 0
 
+    df["Risk Score"] = 0
+    df["Fraud Probability"] = ""
     df["Status"] = ""
+    df["Reasons"] = ""
+    
 
     for index, row in df.iterrows():
 
-        score, status = calculate_risk(row)
+        score, status, reasons = calculate_risk(row)
+
+        probability = calculate_probability(score)
 
         df.at[index, "Risk Score"] = score
 
+        df.at[index, "Fraud Probability"] = f"{probability}%"
+
         df.at[index, "Status"] = status
+
+        df.at[index, "Reasons"] = ", ".join(reasons)
+
+        print(reasons)
 
     total_transactions = len(df)
 
