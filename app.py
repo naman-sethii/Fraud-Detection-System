@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 import pandas as pd
 from fraud_engine import calculate_risk, calculate_probability
+import numpy as np
+from visualization import generate_pie_chart
 
 app = Flask(__name__)
 
@@ -38,7 +40,7 @@ def upload():
 
         df.at[index, "Reasons"] = ", ".join(reasons)
 
-        print(reasons)
+    print(df)
 
     total_transactions = len(df)
 
@@ -47,6 +49,8 @@ def upload():
     medium_risk = len(df[df["Status"] == "Medium Risk"])
 
     safe = len(df[df["Status"] == "Safe"])
+
+    generate_pie_chart(high_risk, medium_risk, safe)
     
     print("Total :", total_transactions)
 
@@ -56,9 +60,21 @@ def upload():
 
     print("Safe :", safe)
 
-    return "CSV Uploaded Successfully!"
+    risk_scores = df["Risk Score"].to_numpy(dtype=np.int32)
 
+    average_risk = np.mean(risk_scores)
 
+    highest_risk = np.max(risk_scores)
+
+    lowest_risk = np.min(risk_scores)
+
+    risk_std = np.std(risk_scores)
+
+    median_risk = np.median(risk_scores)
+
+    percentage_high = np.round((high_risk / total_transactions) * 100, 2)
+
+    percentage_safe = np.round((safe / total_transactions) * 100, 2)
 
 
 if __name__ == "__main__":
