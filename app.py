@@ -3,6 +3,7 @@ import pandas as pd
 from fraud_engine import calculate_risk, calculate_probability
 import numpy as np
 from visualization import generate_pie_chart, generate_bar_chart, generate_reason_chart, generate_scatter_plot
+from ai_report import generate_ai_report
 app = Flask(__name__)
 
 @app.route("/")
@@ -109,6 +110,24 @@ def upload():
         transactions = df.to_dict(orient = "records")
     
     )
+
+    reason_summary = ""
+
+    for reason in df["Reasons"]:
+
+        reason_summary += reason + "\n"
+    
+    high_risk_transactions = ""
+
+    for index, row in df.iterrows():
+
+        if row["Status"] == "High Risk":
+
+            high_risk_transactions += (
+            f"Transaction ID: {row['TransactionID']}\n"
+            f"Risk Score: {row['Risk Score']}\n"
+            f"Reasons: {row['Reasons']}\n\n"
+            )
 
 
 if __name__ == "__main__":
