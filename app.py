@@ -24,7 +24,10 @@ def home():
         median_risk=0,
         risk_std=0,
 
-        transactions=[]
+        transactions=[],
+
+        analysis_done=False,
+        report=""
     )
 
 @app.route("/upload", methods=["POST"])
@@ -85,6 +88,35 @@ def upload():
 
     percentage_safe = np.round((safe / total_transactions) * 100, 2)
 
+    reason_summary = ""
+
+    for reason in df["Reasons"]:
+
+        reason_summary += reason + "\n"
+    
+    high_risk_transactions = ""
+
+    for index, row in df.iterrows():
+
+        if row["Status"] == "High Risk":
+
+            high_risk_transactions += (
+            f"Transaction ID: {row['TransactionID']}\n"
+            f"Risk Score: {row['Risk Score']}\n"
+            f"Reasons: {row['Reasons']}\n\n"
+            )
+
+    report = generate_ai_report(
+            total_transactions,
+            high_risk,
+            medium_risk,
+            safe,
+            round(average_risk, 2),
+            highest_risk,
+            lowest_risk,
+            reason_summary,
+            high_risk_transactions)
+
     return render_template(
 
         "dashboard.html",
@@ -107,27 +139,14 @@ def upload():
 
         risk_std=round(risk_std, 2),
 
-        transactions = df.to_dict(orient = "records")
+        transactions = df.to_dict(orient = "records"),
+
+        report = report,
+
+        analysis_done=True
     
     )
 
-    reason_summary = ""
-
-    for reason in df["Reasons"]:
-
-        reason_summary += reason + "\n"
-    
-    high_risk_transactions = ""
-
-    for index, row in df.iterrows():
-
-        if row["Status"] == "High Risk":
-
-            high_risk_transactions += (
-            f"Transaction ID: {row['TransactionID']}\n"
-            f"Risk Score: {row['Risk Score']}\n"
-            f"Reasons: {row['Reasons']}\n\n"
-            )
 
 
 if __name__ == "__main__":

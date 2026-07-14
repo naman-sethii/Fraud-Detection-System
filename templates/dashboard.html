@@ -63,13 +63,35 @@
                     type="submit"
                     id="analyze-btn">
 
-                    Analyze Transactions
+                    Run Fraud Analysis
 
                     </button>
 
             </form>
 
         </section>
+
+        {% if not analysis_done %}
+
+        <section class="welcome-section">
+
+            <div class="welcome-box">
+
+                <h2>Welcome to the Fraud Detection System</h2>
+
+                <p>
+                    Upload a transaction CSV file to begin fraud detection, generate
+                    statistical insights, visualize fraud analytics and receive an
+                    AI-generated investigation report.
+                </p>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+        {% if analysis_done %}
 
         <section class="stats">
 
@@ -94,6 +116,10 @@
             </div>
 
         </section>
+
+        {% endif %}
+
+        {% if analysis_done %}
 
         <section class="analytics-section">
 
@@ -145,6 +171,10 @@
 
         </section>
 
+        {% endif %}
+
+        {% if analysis_done %}
+
         <section class="charts-section">
 
             <h2>Visual Analytics</h2>
@@ -195,6 +225,10 @@
             </div>
 
         </section>
+        
+        {% endif %}
+
+        {% if analysis_done %}
 
         <section class="table-section">
 
@@ -255,7 +289,25 @@
 
         </section>
 
+        {% endif %}
+
     </div>
+
+    {% if analysis_done %}
+
+    <div class="ai-report">
+
+        <h2>🤖 AI Fraud Investigation Report</h2>
+
+        <p class="ai-subtitle">
+            Generated using Google Gemini AI
+        </p>
+
+        <pre>{{ report }}</pre>
+
+    </div>
+
+    {% endif %}
 
 </body>
 

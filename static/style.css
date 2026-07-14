@@ -383,3 +383,74 @@ tr:hover{
     font-weight:bold;
 
 }
+
+.ai-report{
+
+    margin-top:40px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ai-report h2{
+
+    color:#1d3557;
+
+    margin-bottom:20px;
+}
+
+.ai-report pre{
+
+    white-space:pre-wrap;
+
+    font-family:Arial, sans-serif;
+
+    line-height:1.6;
+
+    font-size:15px;
+}
+
+.ai-subtitle{
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.welcome-section{
+
+    margin-top:40px;
+}
+
+.welcome-box{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.welcome-box h2{
+
+    color:#1d3557;
+
+    margin-bottom:15px;
+}
+
+.welcome-box p{
+
+    color:#555;
+
+    line-height:1.8;
+
+    font-size:16px;
+}
