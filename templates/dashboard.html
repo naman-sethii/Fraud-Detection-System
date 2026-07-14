@@ -75,33 +75,122 @@
 
             <div class="card total">
                 <h3>📄 Total Transactions</h3>
-                <p id="total-count">0</p>
+                <p id="total-count">{{ total_transactions  }}</p>
             </div>
 
             <div class="card high">
                 <h3>🚨 High Risk</h3>
-                <p id="high-count">0</p>
+                <p id="high-count">{{ high_risk }}</p>
             </div>
 
             <div class="card medium">
                 <h3>⚠️ Medium Risk</h3>
-                <p id="medium-count">0</p>
+                <p id="medium-count">{{ medium_risk }}</p>
             </div>
 
             <div class="card safe">
                 <h3>✅ Safe</h3>
-                <p id="safe-count">0</p>
+                <p id="safe-count">{{ safe }}</p>
             </div>
 
         </section>
 
-        <section class="chart-section">
+        <section class="analytics-section">
 
-            <h2>Fraud Distribution</h2>
+            <h2>Analysis Summary</h2>
 
-            <div class="chart-placeholder" id="chart-container">
+            <div class="analytics-grid">
 
-                <p>📊 Pie Chart will appear here after analysis</p>
+                <div class="analytics-card">
+
+                    <h3>Average Risk</h3>
+
+                    <p>{{ average_risk }}</p>
+
+                </div>
+
+                <div class="analytics-card">
+
+                    <h3>Highest Risk</h3>
+
+                    <p>{{ highest_risk }}</p>
+
+                </div>
+
+                <div class="analytics-card">
+
+                    <h3>Lowest Risk</h3>
+
+                    <p>{{ lowest_risk }}</p>
+
+                </div>
+
+                <div class="analytics-card">
+
+                    <h3>Median Risk</h3>
+
+                    <p>{{ median_risk }}</p>
+
+                </div>
+
+                <div class="analytics-card">
+
+                    <h3>Standard Deviation</h3>
+
+                    <p>{{ risk_std }}</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="charts-section">
+
+            <h2>Visual Analytics</h2>
+
+            <div class="charts-container">
+
+                <div class="chart-box">
+
+                <h3>Fraud Distribution</h3>
+
+                <img
+                    src="{{ url_for('static', filename='charts/pie_chart.png') }}"
+                    alt="Fraud Distribution">
+
+                </div>
+
+                <div class="chart-box">
+
+                    <h3>Risk Score Distribution</h3>
+
+                    <img
+                        src="{{ url_for('static', filename='charts/bar_chart.png') }}"
+                        alt="Risk Score Distribution">
+
+                    </div>
+
+
+                <div class="chart-box">
+
+                    <h3>Fraud Indicator Frequency</h3>
+
+                    <img
+                        src="{{ url_for('static', filename='charts/reason_chart.png') }}"
+                        alt="Fraud Indicator Frequency">
+
+                </div>
+
+                <div class="chart-box">
+
+                    <h3>Login Attempts Analysis</h3>
+
+                    <img
+                        src="{{ url_for('static', filename='charts/scatter_plot.png') }}"
+                        alt="Login Attempts vs Risk Score">
+
+                </div>
 
             </div>
 
@@ -121,8 +210,11 @@
                     <th>Amount</th>
                     <th>Location</th>
                     <th>Device</th>
+                    <th>Login Attempts</th>
                     <th>Risk Score</th>
+                    <th>Fraud Probability</th>
                     <th>Status</th>
+                    <th>Reasons</th>
 
                 </tr>
 
@@ -130,16 +222,32 @@
 
             <tbody id="transaction table">
 
+                {% for row in transactions %}
+
                 <tr>
 
-                    <td>1001</td>
-                    <td>₹75,000</td>
-                    <td>USA</td>
-                    <td>New Device</td>
-                    <td>95</td>
-                    <td class="danger">High Risk</td>
+                    <td>{{ row["TransactionID"] }}</td>
+
+                    <td>{{ row["Amount"] }}</td>
+
+                    <td>{{ row["Location"] }}</td>
+
+                    <td>{{ row["Device"] }}</td>
+
+                    <td>{{ row["LoginAttempts"] }}</td>
+
+                    <td>{{ row["Risk Score"] }}</td>
+
+                    <td>{{ row["Fraud Probability"] }}</td>
+
+                    <td>{{ row["Status"] }}</td>
+
+                    <td>{{ row["Reasons"] }}</td>
 
                 </tr>
+
+                {% endfor %}
+
 
             </tbody>
 

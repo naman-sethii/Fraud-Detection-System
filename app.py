@@ -2,14 +2,29 @@ from flask import Flask, render_template, request
 import pandas as pd
 from fraud_engine import calculate_risk, calculate_probability
 import numpy as np
-from visualization import generate_pie_chart
-
+from visualization import generate_pie_chart, generate_bar_chart, generate_reason_chart, generate_scatter_plot
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("dashboard.html")
 
+    return render_template(
+
+        "dashboard.html",
+
+        total_transactions=0,
+        high_risk=0,
+        medium_risk=0,
+        safe=0,
+
+        average_risk=0,
+        highest_risk=0,
+        lowest_risk=0,
+        median_risk=0,
+        risk_std=0,
+
+        transactions=[]
+    )
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -40,8 +55,6 @@ def upload():
 
         df.at[index, "Reasons"] = ", ".join(reasons)
 
-    print(df)
-
     total_transactions = len(df)
 
     high_risk = len(df[df["Status"] == "High Risk"])
@@ -51,15 +64,10 @@ def upload():
     safe = len(df[df["Status"] == "Safe"])
 
     generate_pie_chart(high_risk, medium_risk, safe)
+    generate_bar_chart(df)
+    generate_reason_chart(df)
+    generate_scatter_plot(df)
     
-    print("Total :", total_transactions)
-
-    print("High :", high_risk)
-
-    print("Medium :", medium_risk)
-
-    print("Safe :", safe)
-
     risk_scores = df["Risk Score"].to_numpy(dtype=np.int32)
 
     average_risk = np.mean(risk_scores)
@@ -75,6 +83,32 @@ def upload():
     percentage_high = np.round((high_risk / total_transactions) * 100, 2)
 
     percentage_safe = np.round((safe / total_transactions) * 100, 2)
+
+    return render_template(
+
+        "dashboard.html",
+
+        total_transactions=total_transactions,
+
+        high_risk=high_risk,
+
+        medium_risk=medium_risk,
+
+        safe=safe,
+
+        average_risk=round(average_risk, 2),
+
+        highest_risk=highest_risk,
+
+        lowest_risk=lowest_risk,
+
+        median_risk=median_risk,
+
+        risk_std=round(risk_std, 2),
+
+        transactions = df.to_dict(orient = "records")
+    
+    )
 
 
 if __name__ == "__main__":
