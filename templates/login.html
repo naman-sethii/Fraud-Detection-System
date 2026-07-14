@@ -1,16 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Fraud Detection System</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Bank Login</title>
 
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_.css') }}">
+</head>
 <body>
 
-    <h1>Fraud Detection System</h1>
+<div class="container">
 
-    <h2>Login Page</h2>
+    <div class="left-panel">
+        <h1>SecureBank</h1>
 
-    <p>Our Flask application is working!</p>
+        <h2>Your Money.<br>Your Security.</h2>
+
+        <p>
+            Access your account securely with industry-leading encryption
+            and real-time fraud protection.
+        </p>
+
+        <div class="features">
+            <div>✔ 256-bit Encryption</div>
+            <div>✔ Secure Transactions</div>
+            <div>✔ 24×7 Customer Support</div>
+        </div>
+    </div>
+
+
+    <div class="right-panel">
+
+        <div class="login-card">
+
+            <h2>Customer Login</h2>
+
+            <p class="subtitle">Welcome back! Please login to continue.</p>
+
+            <form action="/dashboard">
+
+                <label>Username</label>
+                <input type="text" placeholder="Enter username" required>
+
+                <label>Password</label>
+                <input type="password" placeholder="Enter password" required>
+
+                <div class="row">
+                    <label class="remember">
+                        <input type="checkbox">
+                        Remember Me
+                    </label>
+
+                    <a href="#">Forgot Password?</a>
+                </div>
+
+                <button>Sign In</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
