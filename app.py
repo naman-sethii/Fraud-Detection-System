@@ -11,9 +11,8 @@ def login():
     return render_template("login.html")
 
 @app.route("/dashboard")
+
 def dashboard():
-    return render_template("dashboard.html")
-def home():
 
     return render_template(
 
@@ -44,6 +43,8 @@ def upload():
     print("Filename:", file.filename)
 
     df = pd.read_csv(file)
+    if df.empty:
+        return "Uploaded CSV is empty."
 
     df["Risk Score"] = 0
     df["Fraud Probability"] = ""
@@ -89,10 +90,6 @@ def upload():
     risk_std = np.std(risk_scores)
 
     median_risk = np.median(risk_scores)
-
-    percentage_high = np.round((high_risk / total_transactions) * 100, 2)
-
-    percentage_safe = np.round((safe / total_transactions) * 100, 2)
 
     reason_summary = ""
 
