@@ -82,4 +82,4 @@ def calculate_risk(transaction):
 def calculate_probability(score):
 
     # Probability cannot exceed 100%
-    return min(score, 100)
+    return min(score, 100) 

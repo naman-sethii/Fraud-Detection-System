@@ -60,9 +60,13 @@ def generate_reason_chart(df):
     
         for reason in reason_list:
 
+            reason = reason.strip()
+
+            if reason == "":
+                continue
+
             if reason in reason_count:
                 reason_count[reason] += 1
-
             else:
                 reason_count[reason] = 1
     
