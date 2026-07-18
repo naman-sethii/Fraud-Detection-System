@@ -1,10 +1,10 @@
-# Fraud Detection System
+# 🛡️ Fraud Detection System
 
 A Rule-Based Banking Transaction Analysis System that identifies suspicious transactions, generates statistical insights, visualizes fraud patterns, and produces AI-powered investigation reports using Google Gemini.
 
 ---
 
-##  Project Overview
+## 📌 Project Overview
 
 Financial institutions process thousands of transactions every day, making manual fraud detection difficult and time-consuming.
 
@@ -18,7 +18,7 @@ This project assists banking fraud analysts by:
 
 ---
 
-##  Features
+## ✨ Features
 
 - 🔐 Login Interface
 - 📂 CSV-based Transaction Upload
@@ -32,7 +32,7 @@ This project assists banking fraud analysts by:
 
 ---
 
-##  System Architecture
+## 🏗️ System Architecture
 
 ```
 User Login
@@ -72,7 +72,7 @@ Rule-Based Fraud Engine
 
 ---
 
-## Technology Stack
+## 🛠️ Technology Stack
 
 ### Backend
 - Flask
@@ -101,7 +101,7 @@ Rule-Based Fraud Engine
 
 ---
 
-##  Visual Analytics
+## 📊 Visual Analytics
 
 The system generates four visualizations:
 
@@ -112,7 +112,7 @@ The system generates four visualizations:
 
 ---
 
-##  AI Integration
+## 🤖 AI Integration
 
 Google Gemini is integrated to generate a professional fraud investigation report based on the analyzed transactions.
 
@@ -128,7 +128,7 @@ The generated report includes:
 
 ---
 
-##  Project Structure
+## 📁 Project Structure
 
 ```
 Fraud_Detection_System/
@@ -154,7 +154,8 @@ Fraud_Detection_System/
 ```
 
 ---
-##  Installation
+
+## 🚀 Installation
 
 Clone the repository:
 
@@ -194,7 +195,7 @@ http://127.0.0.1:5000
 
 ---
 
-##  Future Scope
+## 🔮 Future Scope
 
 - Machine Learning-based Fraud Detection
 - Database Integration
@@ -204,6 +205,6 @@ http://127.0.0.1:5000
 - Enhanced User Authentication
 - Advanced Fraud Analytics
 
-## License
+## 📜 License
 
 This project was developed for academic purposes as part of a college software development project.
