@@ -205,6 +205,20 @@ http://127.0.0.1:5000
 - Enhanced User Authentication
 - Advanced Fraud Analytics
 
+---
+
+---
+
+## 📬 Connect
+
+**Naman Sethi**
+
+🔗 GitHub: https://github.com/naman-sethii
+
+If you found this project useful, feel free to ⭐ the repository and explore my other projects.
+
+---
+
 ## 📜 License
 
 This project was developed for academic purposes as part of a college software development project.
