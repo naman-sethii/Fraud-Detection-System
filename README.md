@@ -211,11 +211,9 @@ http://127.0.0.1:5000
 
 ## 📬 Connect
 
-**Naman Sethi**
+### **[Naman Sethi](https://github.com/naman-sethii)**
 
-🔗 GitHub: https://github.com/naman-sethii
-
-If you found this project useful, feel free to ⭐ the repository and explore my other projects.
+If you found this project useful, feel free to ⭐ the repository.
 
 ---
 
